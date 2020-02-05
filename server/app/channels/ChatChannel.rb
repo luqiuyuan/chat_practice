@@ -6,6 +6,10 @@ class ChatChannel < ApplicationCable::Channel
         stream_from "room_#{params[:room]}"
     end
 
+    def unsubscribed
+        puts "pong, unsubscribed"
+    end
+
     def send_message(data)
         puts "send message: " + data.to_s
 
