@@ -4,6 +4,24 @@ import './App.css';
 
 function App() {
   let ws = new WebSocket("ws://localhost:3000/cable");
+  ws.onopen = (evt) => {
+    console.log("connection opened");
+
+    const msg = {
+      command: 'subscribe',
+      identifier: JSON.stringify({
+        channel: 'ChatChannel',
+        room: '1',
+      }),
+    };
+    ws.send(JSON.stringify(msg));
+  }
+  ws.onmessage = (evt) => {
+    console.log("Received: " + evt.data);
+  }
+  ws.onclose = (evt) => {
+    console.log("connection closed");
+  }
   
   return (
     <div className="App">
@@ -12,14 +30,25 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
+        <p
           className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={() => {
+            const msg = {
+              command: 'message',
+              identifier: JSON.stringify({
+                channel: 'ChatChannel',
+                room: '1',
+              }),
+              data: JSON.stringify({
+                action: 'send_message',
+                content: "Hello Cable",
+              }),
+            };
+            ws.send(JSON.stringify(msg));
+          }}
         >
           Learn React
-        </a>
+        </p>
       </header>
     </div>
   );
