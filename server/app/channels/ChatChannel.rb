@@ -8,6 +8,8 @@ class ChatChannel < ApplicationCable::Channel
 
     def send_message(data)
         puts "send message: " + data.to_s
+
+        ActionCable.server.broadcast "room_#{params[:room]}", content: data['content']
     end
 
 end
