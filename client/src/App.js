@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  let ws = new WebSocket("ws://localhost:3000/cable");
+  
   return (
     <div className="App">
       <header className="App-header">
