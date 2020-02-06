@@ -7,16 +7,16 @@ class ChatChannel < ApplicationCable::Channel
         stop_all_streams
     end
 
-    def follow
-        stream_from "room_#{params[:room]}"
+    def follow(data)
+        stream_from "room_#{data['room_id']}"
     end
 
     def unfollow
         stop_all_streams
     end
 
-    def send_message(data)
-        ActionCable.server.broadcast "room_#{params[:room]}", sender: data['sender'], content: data['content']
+    def message(data)
+        ActionCable.server.broadcast "room_#{data['room_id']}", room_id: data['room_id'], sender: data['sender'], content: data['content']
     end
 
 end
