@@ -1,5 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import { Input } from 'antd';
+
 import './App.css';
 
 function App() {
@@ -24,32 +26,8 @@ function App() {
   }
   
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p
-          className="App-link"
-          onClick={() => {
-            const msg = {
-              command: 'message',
-              identifier: JSON.stringify({
-                channel: 'ChatChannel',
-                room: '1',
-              }),
-              data: JSON.stringify({
-                action: 'send_message',
-                content: "Hello Cable",
-              }),
-            };
-            ws.send(JSON.stringify(msg));
-          }}
-        >
-          Learn React
-        </p>
-      </header>
+    <div className="container">
+      <Input placeholder="Room #" />
     </div>
   );
 }
