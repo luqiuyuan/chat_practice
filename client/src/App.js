@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Input } from 'antd';
-
 import './App.css';
+
+import RoomInput from './RoomInput';
 
 function App() {
   let ws = new WebSocket("ws://localhost:3000/cable");
@@ -26,14 +26,7 @@ function App() {
   }
   
   return (
-    <div className="container">
-      <Input
-        className="input"
-        placeholder="Room #" />
-      <div className="button">
-        <p className="go">Go -></p>
-      </div>
-    </div>
+    <RoomInput />
   );
 }
 
