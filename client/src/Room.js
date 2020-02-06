@@ -4,7 +4,7 @@ import { Input } from 'antd';
 
 import './Room.css';
 
-export default function Room() {
+export default function Room(props) {
   return (
     <div className="room_container">
       <div className="room_messages">

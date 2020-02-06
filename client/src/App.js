@@ -6,26 +6,8 @@ import RoomInput from './RoomInput';
 import Room from './Room';
 
 function App() {
-  let ws = new WebSocket("ws://localhost:3000/cable");
-  ws.onopen = (evt) => {
-    console.log("connection opened");
+  const web_socket = connectWebSocket();
 
-    const msg = {
-      command: 'subscribe',
-      identifier: JSON.stringify({
-        channel: 'ChatChannel',
-        room: '1',
-      }),
-    };
-    ws.send(JSON.stringify(msg));
-  }
-  ws.onmessage = (evt) => {
-    console.log("Received: " + evt.data);
-  }
-  ws.onclose = (evt) => {
-    console.log("connection closed");
-  }
-  
   const [page, setPage] = useState(0);
 
   if (page === 0) {
@@ -37,6 +19,21 @@ function App() {
       <Room />
     );
   }
+}
+
+function connectWebSocket() {
+  const web_socket = new WebSocket("ws://localhost:3000/cable");
+  web_socket.onopen = (evt) => {
+    console.log("connection opened");
+  }
+  web_socket.onmessage = (evt) => {
+    console.log("Received: " + evt.data);
+  }
+  web_socket.onclose = (evt) => {
+    console.log("connection closed");
+  }
+
+  return web_socket;
 }
 
 export default App;
