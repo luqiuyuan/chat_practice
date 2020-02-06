@@ -27,7 +27,12 @@ function App() {
   
   return (
     <div className="container">
-      <Input placeholder="Room #" />
+      <Input
+        className="input"
+        placeholder="Room #" />
+      <div className="button">
+        <p className="go">Go -></p>
+      </div>
     </div>
   );
 }
