@@ -1,4 +1,4 @@
-.container {
+.room_input_container {
   width: 100vw;
   height: 100vh;
   background-color: #F35336;
@@ -8,11 +8,11 @@
   align-items: center;
 }
 
-.input {
+.room_input_input {
   width: 500px;
 }
 
-.button {
+.room_input_button {
   height: 60px;
   display: flex;
   flex-direction: column;
@@ -20,12 +20,12 @@
   align-items: center;
 }
 
-.go {
+.room_input_go {
   font-size: 50px;
   color: white;
   cursor: pointer;
 }
 
-.go:hover {
+.room_input_go:hover {
   font-size: 60px;
 }

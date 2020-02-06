@@ -4,14 +4,18 @@ import { Input } from 'antd';
 
 import './RoomInput.css'
 
-export default function RoomInput() {
+export default function RoomInput(props) {
+  const { onSubmit } = props;
+
   return (
-    <div className="container">
+    <div className="room_input_container">
       <Input
-        className="input"
+        className="room_input_input"
         placeholder="Room #" />
-      <div className="button">
-        <p className="go">Go -></p>
+      <div
+        className="room_input_button"
+        onClick={onSubmit}>
+        <p className="room_input_go">Go -></p>
       </div>
     </div>
   );
