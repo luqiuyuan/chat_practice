@@ -26,4 +26,17 @@ export default class API {
     web_socket.send(JSON.stringify(msg));
   }
 
+  static unfollowChatRooms() {
+    const msg = {
+      command: 'message',
+      identifier: JSON.stringify({
+        channel: 'ChatChannel',
+      }),
+      data: JSON.stringify({
+        action: 'unfollow',
+      }),
+    };
+    web_socket.send(JSON.stringify(msg));
+  }
+
 }

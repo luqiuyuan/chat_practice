@@ -19,9 +19,18 @@ function* actFollowAChatRoom() {
   yield takeEvery(ACTIONS.FOLLOW_A_CHAT_ROOM, followAChatRoom);
 }
 
+function* unfollowChatRooms() {
+  yield call(API.unfollowChatRooms);
+}
+
+function* actUnfollowChatRooms() {
+  yield takeEvery(ACTIONS.UNFOLLOW_CHAT_ROOMS, unfollowChatRooms);
+}
+
 export default function* rootSaga() {
   yield all([
     actSubscribeChatChannel(),
     actFollowAChatRoom(),
+    actUnfollowChatRooms(),
   ]);
 }
