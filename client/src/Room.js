@@ -5,7 +5,7 @@ import { Input } from 'antd';
 import './Room.css';
 
 export default function Room(props) {
-  const { webSocket, roomID } = props;
+  const { webSocket, roomID, messages } = props;
 
   const [ text, setText ] = useState(null);
 
@@ -66,7 +66,17 @@ export default function Room(props) {
   return (
     <div className="room_container">
       <div className="room_messages">
-
+        {(() => {
+          if (messages) {
+            let components = [];
+            for (let i = 0; i < messages.size; i++) {
+              components.push(<Message key={i} data={messages.get(i)} />);
+            }
+            return components;
+          } else {
+            return null;
+          }
+        })()}
       </div>
       <Input
         className="room_input"
@@ -74,6 +84,19 @@ export default function Room(props) {
         value={text}
         onChange={onTextChange}
         onPressEnter={send} />
+    </div>
+  );
+}
+
+function Message(props) {
+  const { data } = props;
+
+  return (
+    <div className="room_message_container room_message_own">
+      <p>{data.sender}</p>
+      <div className="room_message_box">
+        <p className="room_message_content">{data.content}</p>
+      </div>
     </div>
   );
 }
