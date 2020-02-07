@@ -12,4 +12,18 @@ export default class API {
     web_socket.send(JSON.stringify(msg));
   }
 
+  static followAChatRoom(room_id) {
+    const msg = {
+      command: 'message',
+      identifier: JSON.stringify({
+        channel: 'ChatChannel',
+      }),
+      data: JSON.stringify({
+        action: 'follow',
+        room_id: room_id,
+      }),
+    };
+    web_socket.send(JSON.stringify(msg));
+  }
+
 }

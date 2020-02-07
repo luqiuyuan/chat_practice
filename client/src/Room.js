@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+import { store } from './App';
+import { followAChatRoom } from './redux/actions';
+
 import { Input } from 'antd';
 
 import './Room.css';
@@ -10,18 +13,7 @@ export default function Room(props) {
   const [ text, setText ] = useState(null);
 
   useEffect(() => {
-    // follow the chat room
-    const msg = {
-      command: 'message',
-      identifier: JSON.stringify({
-        channel: 'ChatChannel',
-      }),
-      data: JSON.stringify({
-        action: 'follow',
-        room_id: roomID,
-      }),
-    };
-    webSocket.send(JSON.stringify(msg));
+    store.dispatch(followAChatRoom(roomID));
 
     return () => {
       // unfollow all chat rooms
