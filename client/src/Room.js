@@ -55,6 +55,8 @@ export default function Room(props) {
     };
 
     webSocket.send(JSON.stringify(msg));
+
+    setText("");
   }
 
   function onTextChange(e) {
@@ -69,6 +71,7 @@ export default function Room(props) {
       <Input
         className="room_input"
         placeholder="Type your message"
+        value={text}
         onChange={onTextChange}
         onPressEnter={send} />
     </div>

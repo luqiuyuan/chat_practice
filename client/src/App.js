@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import './App.css';
 
 import RoomInput from './RoomInput';
-import Room from './Room';
+import RoomContainer from './redux/containers/room_container';
 import reducer from './redux/reducers';
 import { receive } from './redux/actions';
 
 import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
@@ -27,17 +28,23 @@ function App() {
     setRoomID(room_id);
   }
 
-  if (page === 0) {
-    return (
-      <RoomInput onSubmit={goToRoom} />
-    );
-  } else if (page === 1) {
-    return (
-      <Room
-        webSocket={web_socket}
-        roomID={room_id} />
-    );
-  }
+  return (
+    <Provider store={store}>
+      {(() => {
+        if (page === 0) {
+          return (
+            <RoomInput onSubmit={goToRoom} />
+          );
+        } else if (page === 1) {
+          return (
+            <RoomContainer
+              webSocket={web_socket}
+              roomID={room_id} />
+          );
+        }
+      })()}
+    </Provider>
+  );
 }
 
 function connectWebSocket() {
