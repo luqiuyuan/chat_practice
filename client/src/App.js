@@ -5,15 +5,26 @@ import './App.css';
 import RoomInput from './RoomInput';
 import RoomContainer from './redux/containers/room_container';
 import reducer from './redux/reducers';
-import { receive } from './redux/actions';
+import { subscribeChatChannel, receive } from './redux/actions';
+import API from './api';
+import rootSaga from './redux/sagas';
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
+import createSagaMiddleWare from 'redux-saga';
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+// use redux devtools
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleWare();
+
+const store = createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
+
+sagaMiddleware.run(rootSaga);
 
 // connect web socket
-const web_socket = connectWebSocket();
+export const web_socket = connectWebSocket();
 
 function App() {
   const [ page, setPage ] = useState(0);
@@ -55,14 +66,7 @@ function connectWebSocket() {
   web_socket.onopen = (evt) => {
     console.log("connection opened");
 
-    // subscribe the chat channel
-    const msg = {
-      command: 'subscribe',
-      identifier: JSON.stringify({
-        channel: 'ChatChannel',
-      }),
-    };
-    web_socket.send(JSON.stringify(msg));
+    store.dispatch(subscribeChatChannel());
   }
   web_socket.onmessage = (evt) => {
     console.log("Received: " + evt.data);
