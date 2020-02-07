@@ -1,0 +1,1 @@
+This is a practice project of a chat app. It uses by Ruby on Rails and ReactJS. The backend was implemented using Action Cable of Ruby on Rails and Redis. The frontend was implemented using ReactJS and Redux. 
