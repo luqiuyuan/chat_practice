@@ -16,15 +16,17 @@ const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window
 const web_socket = connectWebSocket();
 
 function App() {
-  const [page, setPage] = useState(0);
-  const [room_id, setRoomID] = useState(null);
+  const [ page, setPage ] = useState(0);
+  const [ name, setName ] = useState(0);
+  const [ room_id, setRoomID ] = useState(null);
 
   /**
    * go to room page
    * @param {*} room_id 
    */
-  function goToRoom(room_id) {
+  function goToRoom(name, room_id) {
     setPage(1);
+    setName(name);
     setRoomID(room_id);
   }
 
@@ -39,6 +41,7 @@ function App() {
           return (
             <RoomContainer
               webSocket={web_socket}
+              name={name}
               roomID={room_id} />
           );
         }

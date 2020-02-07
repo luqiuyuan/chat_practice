@@ -7,16 +7,20 @@ import './RoomInput.css'
 export default function RoomInput(props) {
   const { onSubmit } = props;
 
-  const [text, setText] = useState(null);
+  const [ name, setName ] = useState(null);
+  const [ room_id, setRoomID ] = useState(null);
 
-  function onTextChange(e) {
-    setText(e.target.value);
+  function onNameChange(e) {
+    setName(e.target.value);
+  }
+  function onRoomChange(e) {
+    setRoomID(e.target.value);
   }
 
   function submit() {
     // submit only when text is not empty string
-    if (text) {
-      onSubmit(text);
+    if (name && room_id) {
+      onSubmit(name, room_id);
     }
   }
 
@@ -24,8 +28,12 @@ export default function RoomInput(props) {
     <div className="room_input_container">
       <Input
         className="room_input_input"
+        placeholder="Your name"
+        onChange={onNameChange} />
+      <Input
+        className="room_input_input"
         placeholder="Room #"
-        onChange={onTextChange} />
+        onChange={onRoomChange} />
       <div
         className="room_input_button"
         onClick={submit}>
