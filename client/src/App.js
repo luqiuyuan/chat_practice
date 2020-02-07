@@ -16,14 +16,26 @@ const web_socket = connectWebSocket();
 
 function App() {
   const [page, setPage] = useState(0);
+  const [room_id, setRoomID] = useState(null);
+
+  /**
+   * go to room page
+   * @param {*} room_id 
+   */
+  function goToRoom(room_id) {
+    setPage(1);
+    setRoomID(room_id);
+  }
 
   if (page === 0) {
     return (
-      <RoomInput onSubmit={setPage.bind(this, 1)} />
+      <RoomInput onSubmit={goToRoom} />
     );
   } else if (page === 1) {
     return (
-      <Room webSocket={web_socket} />
+      <Room
+        webSocket={web_socket}
+        roomID={room_id} />
     );
   }
 }
