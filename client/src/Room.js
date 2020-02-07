@@ -47,17 +47,19 @@ export default function Room(props) {
   return (
     <div className="room_container">
       <div className="room_messages">
-        {(() => {
-          if (messages) {
-            let components = [];
-            for (let i = 0; i < messages.size; i++) {
-              components.push(<Message key={i} data={messages.get(i)} ownName={name} />);
+        <div className="room_message_container_wrapper">
+          {(() => {
+            if (messages) {
+              let components = [];
+              for (let i = messages.size-1; i >= 0; i--) {
+                components.push(<Message key={i} data={messages.get(i)} ownName={name} />);
+              }
+              return components;
+            } else {
+              return null;
             }
-            return components;
-          } else {
-            return null;
-          }
-        })()}
+          })()}
+        </div>
       </div>
       <Input
         className="room_input"
