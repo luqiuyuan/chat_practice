@@ -5,7 +5,7 @@ import './App.css';
 import RoomInput from './RoomInput';
 import RoomContainer from './redux/containers/room_container';
 import reducer from './redux/reducers';
-import { subscribeChatChannel, receive } from './redux/actions';
+import { subscribeChatChannel, receiveMessage } from './redux/actions';
 import API from './api';
 import rootSaga from './redux/sagas';
 
@@ -73,7 +73,7 @@ function connectWebSocket() {
 
     let data = JSON.parse(evt.data);
     if (!data.type) {
-      store.dispatch(receive(data.message.room_id, data.message.sender, data.message.content));
+      store.dispatch(receiveMessage(data.message.room_id, data.message.sender, data.message.content));
     }
   }
   web_socket.onclose = (evt) => {

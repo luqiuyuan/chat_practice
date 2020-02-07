@@ -1,8 +1,10 @@
+import ACTIONS from '../actions';
+
 import { Map, List } from 'immutable';
 
 export default function reducer(state = Map({}), action) {
   switch (action.type) {
-    case 'RECEIVE':
+    case ACTIONS.RECEIVE_MESSAGE:
       let state_new = state; // shallow copy
       if (!state.get(action.data.room_id)) {
         state_new = state.set(action.data.room_id, List([]));

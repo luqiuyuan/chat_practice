@@ -1,6 +1,7 @@
 import API from '../../api';
+import ACTIONS from '../actions';
 
-import { call, put, all, takeLatest } from 'redux-saga/effects';
+import { call, put, all, takeEvery, takeLatest } from 'redux-saga/effects';
 
 function* subscribeChatChannel() {
   yield call(API.subscribeChatChannel);
