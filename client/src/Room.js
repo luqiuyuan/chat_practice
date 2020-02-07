@@ -20,6 +20,13 @@ export default function Room(props) {
     }
   }, [roomID]);
 
+  useEffect(() => {
+    let divs = document.getElementsByClassName("room_messages");
+    if (divs.length === 1) {
+      divs[0].scrollTop = divs[0].scrollHeight;
+    }
+  }, [messages]);
+
   function send() {
     if (!text) return; // send message only when text is not empty string
 
