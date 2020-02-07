@@ -36,7 +36,7 @@ export default function Room(props) {
       };
       webSocket.send(JSON.stringify(msg));
     }
-  });
+  }, []);
 
   function send() {
     if (!text) return; // send message only when text is not empty string
@@ -53,7 +53,6 @@ export default function Room(props) {
         content: text,
       }),
     };
-
     webSocket.send(JSON.stringify(msg));
 
     setText("");
