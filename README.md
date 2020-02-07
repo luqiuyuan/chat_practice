@@ -1,4 +1,4 @@
-This is a practice project of a chat app. It uses by ```Ruby on Rails``` and ReactJS. The backend was implemented using Action Cable of Ruby on Rails and Redis. The frontend was implemented using ReactJS and Redux.
+This is a practice project of a chat app. The backend was implemented using ```Action Cable``` of ```Ruby on Rail```s and ```Redis```. The frontend was implemented using ```ReactJS``` and ```Redux```.
 
 ### Screen Recording
 
