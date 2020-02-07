@@ -73,10 +73,10 @@ function Message(props) {
   const { data, ownName } = props;
 
   return (
-    <div className={"room_message_container " + (data.sender === ownName? "room_message_own" : "room_message_others")}>
+    <div className={"room_message_container " + (data.sender === ownName? "room_message_container_own" : "room_message_container_others")}>
       <p>{data.sender}</p>
-      <div className="room_message_box">
-        <p className="room_message_content">{data.content}</p>
+      <div className={"room_message_box " + (data.sender === ownName? "room_message_box_own" : "room_message_box_others")}>
+        <p className={"room_message_content " + (data.sender === ownName? "room_message_content_own" : "room_message_content_others")}>{data.content}</p>
       </div>
     </div>
   );
