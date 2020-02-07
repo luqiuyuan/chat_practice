@@ -6,7 +6,6 @@ import RoomInput from './RoomInput';
 import RoomContainer from './redux/containers/room_container';
 import reducer from './redux/reducers';
 import { subscribeChatChannel, receiveMessage } from './redux/actions';
-import API from './api';
 import rootSaga from './redux/sagas';
 
 import { createStore, applyMiddleware, compose } from 'redux';

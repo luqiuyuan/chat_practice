@@ -18,7 +18,7 @@ export default function Room(props) {
     return () => {
       store.dispatch(unfollowChatRooms());
     }
-  }, []);
+  }, [roomID]);
 
   function send() {
     if (!text) return; // send message only when text is not empty string
@@ -73,7 +73,7 @@ function Message(props) {
   const { data, ownName } = props;
 
   return (
-    <div className={"room_message_container " + (data.sender == ownName? "room_message_own" : "room_message_others")}>
+    <div className={"room_message_container " + (data.sender === ownName? "room_message_own" : "room_message_others")}>
       <p>{data.sender}</p>
       <div className="room_message_box">
         <p className="room_message_content">{data.content}</p>
